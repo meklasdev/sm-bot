@@ -8,8 +8,7 @@ const ticketSchema = new mongoose.Schema({
     },
     userId: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     payment: {
         type: String,
@@ -25,6 +24,8 @@ const ticketSchema = new mongoose.Schema({
         default: null
     }
 }, { timestamps: true });
+
+ticketSchema.index({ userId: 1 });
 
 const Ticket = mongoose.model('Ticket', ticketSchema);
 

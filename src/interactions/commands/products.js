@@ -14,7 +14,9 @@ module.exports = {
                 { name: 'fivem', value: 'fivem' },
                 { name: 'spoofer', value: 'spoofer' },
                 { name: 'premium', value: 'premium' },
-                { name: 'bundle', value: 'bundle' }
+                { name: 'bundle', value: 'bundle' },
+                { name: 'fortnite', value: 'fortnite' },
+                { name: 'valorant', value: 'valorant' }
             ],
             required: true
         }
@@ -229,6 +231,65 @@ Auto buy *[website here](https://silentmafia.pl)*`)
                                 emoji: '1382653651214012477',
                                 description: 'See the price and open a ticket D1sc0rd Bundle.',
                                 value: 'discord_bundle',
+                            }
+                        ])
+                );
+                break;
+            case 'fortnite':
+                embed = new EmbedBuilder()
+                    .setDescription(`
+## Fortnite Products
+-# Products available from us:
+<:keyser:1382655865521311825> × K3yser
+<:V_:1398725075334729840> × Ventiq
+
+Select *products*.
+Click on ticket *after select*.
+Auto buy *[website here](https://silentmafia.pl)*`)
+                    .setColor('#6f21ff');
+
+                row = new ActionRowBuilder().addComponents(
+                    new StringSelectMenuBuilder()
+                        .setCustomId('fortnite_products')
+                        .setPlaceholder('❌ × Click to select | Kliknij aby wybrać')
+                        .addOptions([
+                            {
+                                label: 'K3yser',
+                                emoji: '1382655865521311825',
+                                description: 'See the price and open a ticket K3yser.',
+                                value: 'fortnite_keyser',
+                            },
+                            {
+                                label: 'Ventiq',
+                                emoji: '1398725075334729840',
+                                description: 'See the price and open a ticket Ventiq.',
+                                value: 'fortnite_ventiq',
+                            }
+                        ])
+                );
+                break;
+            case 'valorant':
+                embed = new EmbedBuilder()
+                    .setDescription(`
+## Valorant Products
+-# Products available from us:
+<:V_:1398725075334729840> × Ventiq
+
+Select *products*.
+Click on ticket *after select*.
+Auto buy *[website here](https://silentmafia.pl)*`)
+                    .setColor('#6f21ff');
+
+                row = new ActionRowBuilder().addComponents(
+                    new StringSelectMenuBuilder()
+                        .setCustomId('valorant_products')
+                        .setPlaceholder('❌ × Click to select | Kliknij aby wybrać')
+                        .addOptions([
+                            {
+                                label: 'Ventiq',
+                                emoji: '1398725075334729840',
+                                description: 'See the price and open a ticket Ventiq.',
+                                value: 'valorant_ventiq',
                             }
                         ])
                 );
