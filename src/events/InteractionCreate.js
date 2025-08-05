@@ -440,7 +440,10 @@ module.exports = {
                         break;
                 }
 
-                const member = interaction.member
+                const member = interaction.member;
+                if (!roleID) {
+                    return interaction.reply({ content: '> Unknown role.', flags: 64 });
+                }
                 if (member.roles.cache.has(roleID)) {
                     await member.roles.remove(roleID);
                     await interaction.reply({ content: `> Role <@&${roleID}> has been removed.`, flags: 64 });
