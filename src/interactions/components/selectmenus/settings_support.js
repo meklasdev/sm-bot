@@ -57,10 +57,6 @@ module.exports = {
 
                 break;
             case 'close':
-                const closeEmbed = new EmbedBuilder()
-                    .setDescription(`* **Ticket has been closed by** ${interaction.member}`)
-                    .setColor(`#6f21ff`);
-
                 await ticketChannel.permissionOverwrites.set([
                     {
                         id: interaction.guild.id,
@@ -103,7 +99,7 @@ module.exports = {
                 }
 
                 interaction.reply({content: `> * **Ticket has been closed**`, flags: 64});
-                interaction.channel.send({embeds: [closeEmbed], components: [row]})
+                interaction.channel.send({components: [row]})
                 break;
             case 'adduser':
                 const adduserModal = new ModalBuilder()

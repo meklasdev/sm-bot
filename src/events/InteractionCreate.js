@@ -29,7 +29,11 @@ module.exports = {
             } else if (interaction.customId.includes('ticket')) {
                 await interaction.deferReply({ephemeral: true});
                 const name = interaction.customId.split('_');
-                let ticketCategory = name[1].replace('_', '');
+                let ticketCategory = name.slice(1).join(' ');
+                const formattedCategory = ticketCategory
+                    .split(' ')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                    .join(' ');
 
                 let embed, row, paymentEmbed;
                 let paymentValue = null;
@@ -47,7 +51,7 @@ module.exports = {
 > <:3124memberwhiteblack:1384624130682519673> × **Nick:** ${interaction.user.username}
 > <:3124memberwhiteblack:1384624130682519673> × **ID:** ${interaction.member.id}
 ### <:ogl:1382655256256843818> × ***Order Informations:***
-> <:9847public:1384624242800459796> × Category: **${ticketCategory.charAt(0).toUpperCase() + ticketCategory.slice(1).toLowerCase()}**
+> <:9847public:1384624242800459796> × Category: **${formattedCategory}**
 
 > <:2141file:1384624277122449510> × Why you create a ticket: **${supportReason}**
                         `);
@@ -100,7 +104,7 @@ module.exports = {
 > <:3124memberwhiteblack:1384624130682519673> × **Nick:** ${interaction.user.username}
 > <:3124memberwhiteblack:1384624130682519673> × **ID:** ${interaction.member.id}
 ### <:ogl:1382655256256843818> × ***Order Informations:***
-> <:9847public:1384624242800459796> × Category: **${ticketCategory.charAt(0).toUpperCase() + ticketCategory.slice(1).toLowerCase()}**
+> <:9847public:1384624242800459796> × Category: **${formattedCategory}**
 
 > <:2141file:1384624277122449510> × Why you create a ticket: **${otherReason}**
                         `);
@@ -118,7 +122,7 @@ module.exports = {
 > <:3124memberwhiteblack:1384624130682519673> × **Nick:** ${interaction.user.username}
 > <:3124memberwhiteblack:1384624130682519673> × **ID:** ${interaction.member.id}
 ### <:ogl:1382655256256843818> × ***Order Informations:***
-> <:9847public:1384624242800459796> × Category: **${ticketCategory.charAt(0).toUpperCase() + ticketCategory.slice(1).toLowerCase()}**
+> <:9847public:1384624242800459796> × Category: **${formattedCategory}**
 
 > <:2141file:1384624277122449510> × Amount: **${steamAmount}**
 > <:2141file:1384624277122449510> × Payment: **${steamPayment}**
@@ -136,7 +140,7 @@ module.exports = {
 > <:3124memberwhiteblack:1384624130682519673> × **Nick:** ${interaction.user.username}
 > <:3124memberwhiteblack:1384624130682519673> × **ID:** ${interaction.member.id}
 ### <:ogl:1382655256256843818> × ***Order Informations:***
-> <:9847public:1384624242800459796> × Category: **${ticketCategory.charAt(0).toUpperCase() + ticketCategory.slice(1).toLowerCase()}**
+> <:9847public:1384624242800459796> × Category: **${formattedCategory}**
 
 > <:2141file:1384624277122449510> × Payment: **${fivemPayment}**
                         `);
@@ -154,7 +158,7 @@ module.exports = {
 > <:3124memberwhiteblack:1384624130682519673> × **Nick:** ${interaction.user.username}
 > <:3124memberwhiteblack:1384624130682519673> × **ID:** ${interaction.member.id}
 ### <:ogl:1359180323715420312> × ***Order Informations:***
-> <:9847public:1384624242800459796> × Category: **${ticketCategory.charAt(0).toUpperCase() + ticketCategory.slice(1).toLowerCase()}**
+> <:9847public:1384624242800459796> × Category: **${formattedCategory}**
 
 > <:2141file:1384624277122449510> × License: **${license}**
 > <:2141file:1384624277122449510> × Payment: **${payment}**
@@ -195,8 +199,20 @@ module.exports = {
                         categoryID = '1382630830802731033';
                         roleID = '1382630829561217079';
                         break;
+                    case 'keyser fortnite':
+                        categoryID = '1399356793691570198';
+                        roleID = '1382630829561217084';
+                        break;
+                    case 'ventiq fortnite':
+                        categoryID = '1399356793691570198';
+                        roleID = '1382630829561217079';
+                        break;
+                    case 'ventiq valorant':
+                        categoryID = '1399356793691570198';
+                        roleID = '1382630829561217079';
+                        break;
                     case 'keyser':
-                        categoryID = '1382630830064668685';
+                        categoryID = '1399356793691570198';
                         roleID = '1382630829561217084';
                         break;
                     case 'macho':
@@ -272,7 +288,7 @@ module.exports = {
                         roleID = '1382630829573931008';
                         break;
                     case 'ventiq':
-                        categoryID = '1384612382822895786';
+                        categoryID = '1399356793691570198';
                         roleID = '1382630829561217079';
                         break;
                 }
@@ -311,6 +327,8 @@ module.exports = {
                         parent: categoryID,
                         permissionOverwrites: permissionOverwrites
                     });
+
+                    await ticketChannel.fetch();
 
                     if (!row) {
                         row = new ActionRowBuilder().addComponents(
@@ -353,14 +371,28 @@ module.exports = {
                     });
                     await newTicket.save();
 
-                    if (ticketCategory === 'support') {
-                        await ticketChannel.send({embeds: [embed], components: [row]});
+                    if (!embed) {
+                        embed = new EmbedBuilder()
+                            .setDescription('## <:silent:1395058293432516658> Silent Maf1a × TICKET')
+                            .setColor('#6f21ff');
+                    }
+
+                    const content = '@everyone';
+
+                    const botPerms = ticketChannel.permissionsFor(interaction.guild.members.me);
+                    if (botPerms && botPerms.has(PermissionsBitField.Flags.SendMessages) && botPerms.has(PermissionsBitField.Flags.EmbedLinks)) {
+                        try {
+                            await ticketChannel.send({ content, embeds: [embed], components: [row] });
+                            if (paymentEmbed) {
+                                await ticketChannel.send({ embeds: [paymentEmbed] });
+                            }
+                        } catch (sendError) {
+                            console.error('Error sending ticket embed:', sendError);
+                        }
                     } else {
-                        await ticketChannel.send({embeds: [embed], components: [row], content: `<@&${roleID}>`});
+                        console.error('Missing permissions to send messages or embeds in ticket channel.');
                     }
-                    if (paymentEmbed) {
-                        await ticketChannel.send({embeds: [paymentEmbed]});
-                    }
+
                     await interaction.editReply({content: `* **Your ticket has been created!**\n## ${ticketChannel}`});
                 } catch (error) {
                     console.error('Error creating ticket:', error);
@@ -405,7 +437,10 @@ module.exports = {
                         break;
                 }
 
-                const member = interaction.member
+                const member = interaction.member;
+                if (!roleID) {
+                    return interaction.reply({ content: '> Unknown role.', flags: 64 });
+                }
                 if (member.roles.cache.has(roleID)) {
                     await member.roles.remove(roleID);
                     await interaction.reply({ content: `> Role <@&${roleID}> has been removed.`, flags: 64 });
@@ -415,16 +450,6 @@ module.exports = {
                 }
             }
             if (interaction.customId.includes('ticket')) {
-                const existingTicket = await Ticket.findOne({ userId: interaction.member.id });
-                if (existingTicket) {
-                    const existingChannel = interaction.guild.channels.cache.get(existingTicket.channelId);
-                    if (existingChannel) {
-                        return interaction.editReply({ content: `> ${interaction.member} You already have an open ticket!\n * **To create another ticket, close the current ticket.**`, flags: 64 });
-                    } else {
-                        await Ticket.deleteOne({ userId: interaction.member.id });
-                    }
-                }
-
                 const name = interaction.customId.split('_');
                 let ticketCategory = name[1];
 
