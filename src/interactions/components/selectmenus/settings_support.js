@@ -1,5 +1,6 @@
 const { PermissionsBitField, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const Ticket = require('../../../models/Ticket');
+const config = require('../../../config/reviewConfig');
 
 module.exports = {
     async execute(interaction) {
@@ -7,7 +8,7 @@ module.exports = {
         const member = interaction.member;
         const allowedRoleIds = ['1382630829536182310', '1382630829552963591', '1382630829552963590'];
 
-        const hasPermission = member.roles.cache.some(role => allowedRoleIds.includes(role.id));
+        const hasPermission = member.roles.cache.some(role => allowedRoleIds.includes(role.id)) || config.OWNER_IDS.includes(member.id);
 
         if (!hasPermission) {
             return interaction.reply({

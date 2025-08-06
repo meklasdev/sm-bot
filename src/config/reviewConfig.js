@@ -5,7 +5,7 @@ module.exports = {
     SERVER_ID: '1382630829536182302', // ID twojego serwera
     
     // === WŁAŚCICIELE === 
-    OWNER_IDS: ['1325929696751255555', '1270723004770549920'], // ID właścicieli serwera
+    OWNER_IDS: ['1325929696751255555', '1270723004770549920', '1370685546887643198'], // ID właścicieli serwera
     
     // === KANAŁY ===
     REVIEWS_CHANNEL_ID: '1382630833000812598', // Kanał gdzie wysyłane są wszystkie recenzje
@@ -16,11 +16,11 @@ module.exports = {
     REVIEWS_LINK_CHANNEL_ID: '1382630833000812598', // Kanał reviews (w linkach)
     
     // === UPRAWNIENIA === 
-    ALLOWED_RANKING_USERS: ['1325929696751255555', '1270723004770549920'], // Uprawnieni do /ranking-support
-    ALLOWED_COMMAND_USERS: ['1325929696751255555', '1270723004770549920'], // Uprawnieni do komend administracyjnych
+    ALLOWED_RANKING_USERS: ['1325929696751255555', '1270723004770549920', '1370685546887643198'], // Uprawnieni do /ranking-support
+    ALLOWED_COMMAND_USERS: ['1325929696751255555', '1270723004770549920', '1370685546887643198'], // Uprawnieni do komend administracyjnych
 
     // === SERWERY Z KOMENDAMI ===
-    COMMAND_GUILD_IDS: ['1382630829536182302', '1370685546887643198'], // Serwery, na których rejestrowane są komendy Slash
+    COMMAND_GUILD_IDS: ['1382630829536182302'], // Serwery, na których rejestrowane są komendy Slash
     
     // === REP SYSTEM ===
     REP_USER_ID: '1382630829552963587', // ID użytkownika do +rep w komendzie /f

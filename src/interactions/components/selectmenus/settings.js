@@ -1,5 +1,6 @@
 const { PermissionsBitField, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const Ticket = require('../../../models/Ticket');
+const config = require('../../../config/reviewConfig');
 
 module.exports = {
     async execute(interaction) {
@@ -7,7 +8,7 @@ module.exports = {
         const member = interaction.member;
         const permsRole = '1382630829536182310';
 
-        if (!member.roles.cache.has(permsRole))
+        if (!member.roles.cache.has(permsRole) && !config.OWNER_IDS.includes(member.id))
             return interaction.reply({
                 content: '> **Nie masz uprawnień do wejścia w ustawienia tego ticketa.**',
                 flags: 64

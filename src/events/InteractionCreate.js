@@ -287,6 +287,9 @@ module.exports = {
                         categoryID = '1382630830064668682';
                         roleID = '1382630829573931008';
                         break;
+                    case 'fn ch33t keyser':
+                    case 'fn ch33t ventiq':
+                    case 'valorant ch33t ventiq':
                     case 'ventiq':
                         categoryID = '1399356793691570198';
                         roleID = '1382630829561217079';

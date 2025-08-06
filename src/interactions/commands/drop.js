@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const DropCooldown = require('../../models/DropCooldown');
+const config = require('../../config/reviewConfig');
 const cooldownTime = 8 * 60 * 60 * 1000;
 
 module.exports = {
@@ -9,15 +10,18 @@ module.exports = {
         const userId = interaction.user.id;
 
         try {
-            let userCooldown = await DropCooldown.findOne({ userId: userId });
+            let userCooldown;
+            if (!config.OWNER_IDS.includes(userId)) {
+                userCooldown = await DropCooldown.findOne({ userId: userId });
 
-            if (userCooldown) {
-                const expirationTime = userCooldown.lastDrop.getTime() + cooldownTime;
-                if (Date.now() < expirationTime) {
-                    return interaction.reply({
-                        content: `> Będziesz mógł/mogła ponownie użyć tej komendy <t:${Math.floor(expirationTime / 1000)}:R> ⏳`,
-                        flags: 64
-                    });
+                if (userCooldown) {
+                    const expirationTime = userCooldown.lastDrop.getTime() + cooldownTime;
+                    if (Date.now() < expirationTime) {
+                        return interaction.reply({
+                            content: `> Będziesz mógł/mogła ponownie użyć tej komendy <t:${Math.floor(expirationTime / 1000)}:R> ⏳`,
+                            flags: 64
+                        });
+                    }
                 }
             }
 
@@ -42,11 +46,13 @@ module.exports = {
                 resultType = 'loss';
             }
 
-            if (userCooldown) {
-                userCooldown.lastDrop = Date.now();
-                await userCooldown.save();
-            } else {
-                await DropCooldown.create({ userId: userId, lastDrop: Date.now() });
+            if (!config.OWNER_IDS.includes(userId)) {
+                if (userCooldown) {
+                    userCooldown.lastDrop = Date.now();
+                    await userCooldown.save();
+                } else {
+                    await DropCooldown.create({ userId: userId, lastDrop: Date.now() });
+                }
             }
 
             if (resultType === 'loss') {
