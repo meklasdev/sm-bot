@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
+const config = require('../config/reviewConfig');
 
 const loadFiles = async (dir) => {
     const results = [];
@@ -26,7 +26,7 @@ const loadFiles = async (dir) => {
     }
 };
 
-const registerCommand = async (command, client, guildId) => {
+const registerCommand = async (command, client, guildIds) => {
     try {
         const commandData = {
             name: command.name,
@@ -34,17 +34,23 @@ const registerCommand = async (command, client, guildId) => {
             options: command.options || []
         };
 
-        // if (guildId) {
-        //     const guild = await client.guilds.fetch(guildId);
-        //     if (!guild) {
-        //         throw new Error(`Nie znaleziono serwera o ID: ${guildId}`);
-        //     }
-        //     await guild.commands.create(commandData);
-        //     console.log(`Zarejestrowano komendę SlashCommand: ${command.name} na serwerze: ${guildId}`);
-        // } else {
-        //     await client.application.commands.create(commandData);
-        //     console.log(`Zarejestrowano globalną komendę SlashCommand: ${command.name}`);
-        // }
+        if (guildIds && guildIds.length) {
+            await Promise.all(guildIds.map(async (id) => {
+                try {
+                    const guild = await client.guilds.fetch(id);
+                    if (!guild) {
+                        throw new Error(`Nie znaleziono serwera o ID: ${id}`);
+                    }
+                    await guild.commands.create(commandData);
+                    console.log(`Zarejestrowano komendę SlashCommand: ${command.name} na serwerze: ${id}`);
+                } catch (err) {
+                    console.error(`Błąd podczas rejestracji komendy ${command.name} na serwerze ${id}:`, err);
+                }
+            }));
+        } else {
+            await client.application.commands.create(commandData);
+            console.log(`Zarejestrowano globalną komendę SlashCommand: ${command.name}`);
+        }
 
         await client.commands.set(command.name, command);
         console.log(`Załadowano komendę: ${command.name}`);
@@ -57,7 +63,7 @@ const registerCommand = async (command, client, guildId) => {
 module.exports = async (client) => {
     try {
         const commandFiles = await loadFiles(path.join(__dirname, '../interactions/commands'));
-        const guildId = process.env.GUILD_ID;
+        const guildIds = config.COMMAND_GUILD_IDS || [config.SERVER_ID];
 
         const loadCommandsPromises = commandFiles.map(async (file) => {
             try {
@@ -71,7 +77,7 @@ module.exports = async (client) => {
                     throw new Error(`Komenda w pliku ${file} nie posiada funkcji execute.`);
                 }
 
-                await registerCommand(command, client, guildId);
+                await registerCommand(command, client, guildIds);
 
             } catch (error) {
                 console.error(`Błąd podczas ładowania komendy w pliku ${file}:`, error);

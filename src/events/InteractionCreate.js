@@ -521,17 +521,6 @@ module.exports = {
                 }
                 interaction.showModal(modal);
 
-            } else if (interaction.customId.includes('review_ticket')) {
-                // Obsługa buttonów recenzji
-                const button = client.buttons.get('review');
-                if (button) {
-                    try {
-                        await button.execute(interaction);
-                    } catch (error) {
-                        console.error(error);
-                        await interaction.reply({ content: 'Wystąpił błąd podczas obsługi recenzji.', flags: 64 });
-                    }
-                }
             } else if (interaction.customId.includes('ranking_')) {
                 // Obsługa buttonów rankingu
                 const button = client.buttons.get('ranking');

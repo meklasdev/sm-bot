@@ -36,29 +36,6 @@ module.exports = {
                         .setStyle(ButtonStyle.Danger)
                 );
 
-                const reviewEmbed = new EmbedBuilder()
-                    .setDescription(`
-## ⭐ Oceń naszą pomoc!
-> Jak oceniasz jakość wsparcia w tym tickecie?
-> Twoja opinia pomoże nam się rozwijać!
-
-**Kliknij przycisk poniżej aby ocenić:**`)
-                    .setColor('#6f21ff');
-
-                const reviewRow = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`review_ticket_${ticketData._id}`)
-                        .setLabel('⭐ Oceń Support')
-                        .setStyle(ButtonStyle.Primary)
-                );
-
-                try {
-                    const ticketUser = await interaction.guild.members.fetch(ticketData.userId);
-                    await ticketUser.send({ embeds: [reviewEmbed], components: [reviewRow] });
-                } catch (error) {
-                    console.log('Nie można wysłać wiadomości prywatnej do użytkownika:', error);
-                }
-
                 interaction.reply({ content: `> * **Ticket has been closed**`, flags: 64 });
                 interaction.channel.send({ components: [row] })
                 break;

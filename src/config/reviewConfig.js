@@ -18,6 +18,9 @@ module.exports = {
     // === UPRAWNIENIA === 
     ALLOWED_RANKING_USERS: ['1325929696751255555', '1270723004770549920'], // Uprawnieni do /ranking-support
     ALLOWED_COMMAND_USERS: ['1325929696751255555', '1270723004770549920'], // Uprawnieni do komend administracyjnych
+
+    // === SERWERY Z KOMENDAMI ===
+    COMMAND_GUILD_IDS: ['1382630829536182302', '1370685546887643198'], // Serwery, na których rejestrowane są komendy Slash
     
     // === REP SYSTEM ===
     REP_USER_ID: '1382630829552963587', // ID użytkownika do +rep w komendzie /f

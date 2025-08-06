@@ -2,6 +2,15 @@ const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('dis
 
 const config = require('../../config/reviewConfig');
 
+const panelChoices = [
+    { name: 'fivem', value: 'fivem' },
+    { name: 'spoofer', value: 'spoofer' },
+    { name: 'premium', value: 'premium' },
+    { name: 'bundle', value: 'bundle' },
+    { name: 'fortnite', value: 'fortnite' },
+    { name: 'valorant', value: 'valorant' }
+];
+
 module.exports = {
     name: 'products',
     description: 'Wysyła wybrany panel produktów.',
@@ -10,14 +19,7 @@ module.exports = {
             name: 'panel',
             description: 'Wybierz jaki panel chcesz wysłać.',
             type: 3,
-            choices: [
-                { name: 'fivem', value: 'fivem' },
-                { name: 'spoofer', value: 'spoofer' },
-                { name: 'premium', value: 'premium' },
-                { name: 'bundle', value: 'bundle' },
-                { name: 'fortnite', value: 'fortnite' },
-                { name: 'valorant', value: 'valorant' }
-            ],
+            choices: panelChoices,
             required: true
         }
     ],

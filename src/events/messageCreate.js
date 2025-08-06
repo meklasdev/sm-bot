@@ -49,6 +49,8 @@ module.exports = {
                 const sent = await message.channel.send({ embeds: [suggestionEmbed] });
                 await sent.react('1385019566744146020');
                 await sent.react('1385019541670727730');
+                const threadName = `dyskusja-${message.author.username}`.slice(0, 100);
+                await sent.startThread({ name: threadName, autoArchiveDuration: 1440 });
             } catch (error) {
                 console.error('[messageCreate] Błąd podczas wysyłania sugestii:', error);
             }
