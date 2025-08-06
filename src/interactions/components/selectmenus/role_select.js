@@ -1,3 +1,4 @@
+const { EmbedBuilder } = require('discord.js');
 const roles = require('../../../config/rolesConfig');
 
 module.exports = {
@@ -25,6 +26,10 @@ module.exports = {
             }
         }
 
-        await interaction.reply({ content: '> **Twoje role zostały zaktualizowane.**', flags: 64 });
+        const embed = new EmbedBuilder()
+            .setColor('#6f21ff')
+            .setDescription('> **Twoje role zostały zaktualizowane.**');
+
+        await interaction.reply({ embeds: [embed], flags: 64 });
     }
 };

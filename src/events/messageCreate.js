@@ -2,6 +2,7 @@ const { EmbedBuilder, ChannelType, PermissionsBitField } = require('discord.js')
 const channelIds = ['1382630833000812598', '1382630834875535365'];
 const config = require('../config/reviewConfig');
 const verificationConfig = require('../config/verificationConfig');
+const roles = require('../config/rolesConfig');
 
 module.exports = {
     name: "messageCreate",
@@ -23,7 +24,10 @@ module.exports = {
 
                 setTimeout(async () => {
                     try {
-                        const sent = await message.channel.send(verificationConfig.STICKY_MESSAGE);
+                        const stickyEmbed = new EmbedBuilder()
+                            .setDescription(verificationConfig.STICKY_MESSAGE)
+                            .setColor('#6f21ff');
+                        const sent = await message.channel.send({ embeds: [stickyEmbed] });
                         await sent.pin();
                     } catch (err) {
                         console.error('[messageCreate] Błąd przy wysyłaniu poradnika:', err);
@@ -32,8 +36,31 @@ module.exports = {
             } else {
                 await message.delete().catch(() => {});
                 await message.member.timeout(verificationConfig.TIMEOUT_MS, 'Failed verification').catch(() => {});
-                await message.author.send({ content: verificationConfig.DM_MESSAGE }).catch(() => {});
+                const dmEmbed = new EmbedBuilder()
+                    .setDescription(verificationConfig.DM_MESSAGE)
+                    .setColor('#6f21ff');
+                await message.author.send({ embeds: [dmEmbed] }).catch(() => {});
             }
+            return;
+        }
+
+        if (message.channel.id === '1382630832023408715') {
+            if (!message.member.roles.cache.has(roles.CONTENT_ROLE_ID)) return;
+            const linkMatch = message.content.match(/https?:\/\/\S+/);
+            if (!linkMatch) return;
+            const link = linkMatch[0];
+            await message.react('✅').catch(() => {});
+            const filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+            const collector = message.createReactionCollector({ filter, max: 1, time: 600000 });
+            collector.on('collect', async () => {
+                setTimeout(async () => {
+                    await message.delete().catch(() => {});
+                    const embed = new EmbedBuilder()
+                        .setDescription(`Nowy filmik! [Kliknij tutaj](${link})`)
+                        .setColor('#6f21ff');
+                    await message.channel.send({ content: `<@&${roles.CONTENT_ROLE_ID}>`, embeds: [embed] });
+                }, 3000);
+            });
             return;
         }
 
