@@ -416,42 +416,6 @@ module.exports = {
                 }
             }
         } else if (interaction.isButton()) {
-            if (interaction.customId.includes('role')) {
-                const name = interaction.customId.split('_');
-                let roleName = name[1];
-
-                let roleID;
-
-                switch (roleName) {
-                    case 'changelog':
-                        roleID = '1382630829536182305';
-                        break;
-                    case 'content':
-                        roleID = '1382630829536182304';
-                        break;
-                    case 'free-stuff':
-                        roleID = '1382630829536182307';
-                        break;
-                    case 'other':
-                        roleID = '1382630829536182308';
-                        break;
-                    case 'restocks':
-                        roleID = '1382630829536182306';
-                        break;
-                }
-
-                const member = interaction.member;
-                if (!roleID) {
-                    return interaction.reply({ content: '> Unknown role.', flags: 64 });
-                }
-                if (member.roles.cache.has(roleID)) {
-                    await member.roles.remove(roleID);
-                    await interaction.reply({ content: `> Role <@&${roleID}> has been removed.`, flags: 64 });
-                } else {
-                    await member.roles.add(roleID);
-                    await interaction.reply({ content: `> Role <@&${roleID}> has been added.`, flags: 64 });
-                }
-            }
             if (interaction.customId.includes('ticket')) {
                 const name = interaction.customId.split('_');
                 let ticketCategory = name[1];
