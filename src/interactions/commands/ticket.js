@@ -290,7 +290,7 @@ module.exports = {
                 break;
             case 'keyser':
                 embed = new EmbedBuilder()
-                    .setImage('https://media.discordapp.net/attachments/1382630836171706429/1400615710824333453/KEYSER.png?ex=688f42c7&is=688df147&hm=63a64880e60bea8b72aa3b01d4a1e7b6e6bd2487c78d0a5c07af2dcc097bb5c9&=&format=webp&quality=lossless')
+                    .setImage('https://cdn.discordapp.com/attachments/1388555378643566663/1402629014606057533/fn_vk3y.png?ex=68949b90&is=68934a10&hm=b096117531ff208ea0709b4d4ab20f196313f56ea3803a8ffe08e3c433374693&')
                     .setDescription(`
 # <:keyser:1358050517988806766> Keyser <:keyser:1358050517988806766>
 <a:arrowpurple:1358514479561965599> ***description***

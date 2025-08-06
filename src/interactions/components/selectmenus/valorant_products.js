@@ -9,7 +9,7 @@ module.exports = {
             case 'valorant_ventiq':
                 embed = new EmbedBuilder()
                     .setColor('#6f21ff')
-                    .setImage('https://media.discordapp.net/attachments/1382630836171706429/1400617648609427587/VENTIQ.png?ex=68909615&is=688f4495&hm=11964d4d0dd56e26a40e221535c6c084d0db34439d428cfec77ff8e194c29bb8&=&format=webp&quality=lossless')
+                    .setImage('https://cdn.discordapp.com/attachments/1388555378643566663/1402628906342809650/valorant_ventiq.png?ex=68949b76&is=689349f6&hm=7cd6e225c969cfbf666fabacc8161ba088de0b3c46106118f5b85431a8b6fb5c&')
                     .setDescription(`
 # <:V_:1398725075334729840> Ventiq Valorant <:V_:1398725075334729840>
 <a:arrowpurple:1384626293139570781> ***description***

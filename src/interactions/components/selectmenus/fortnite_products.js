@@ -9,7 +9,7 @@ module.exports = {
             case 'fortnite_keyser':
                 embed = new EmbedBuilder()
                     .setColor('#6f21ff')
-                    .setImage('https://media.discordapp.net/attachments/1382630836171706429/1400615710824333453/KEYSER.png?ex=688f42c7&is=688df147&hm=63a64880e60bea8b72aa3b01d4a1e7b6e6bd2487c78d0a5c07af2dcc097bb5c9&=&format=webp&quality=lossless')
+                    .setImage('https://cdn.discordapp.com/attachments/1388555378643566663/1402629014606057533/fn_vk3y.png?ex=68949b90&is=68934a10&hm=b096117531ff208ea0709b4d4ab20f196313f56ea3803a8ffe08e3c433374693&')
                     .setDescription(`
 # <:keyser:1382655865521311825> K3yser Fortnite <:keyser:1382655865521311825>
 <a:arrowpurple:1384626293139570781> ***description***
@@ -57,7 +57,7 @@ module.exports = {
             case 'fortnite_ventiq':
                 embed = new EmbedBuilder()
                     .setColor('#6f21ff')
-                    .setImage('https://media.discordapp.net/attachments/1382630836171706429/1400617648609427587/VENTIQ.png?ex=68909615&is=688f4495&hm=11964d4d0dd56e26a40e221535c6c084d0db34439d428cfec77ff8e194c29bb8&=&format=webp&quality=lossless')
+                    .setImage('https://cdn.discordapp.com/attachments/1388555378643566663/1402628906690805841/ventiq_fn.png?ex=68949b76&is=689349f6&hm=38f22f208c9b5da0628e1de23df6a0f2b019a324f57e115f9fed926a8327683b&')
                     .setDescription(`
 # <:V_:1398725075334729840> Ventiq Fortnite <:V_:1398725075334729840>
 <a:arrowpurple:1384626293139570781> ***description***

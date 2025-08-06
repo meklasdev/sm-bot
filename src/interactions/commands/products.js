@@ -248,6 +248,7 @@ Auto buy *[website here](https://silentmafia.pl)*`)
 Select *products*.
 Click on ticket *after select*.
 Auto buy *[website here](https://silentmafia.pl)*`)
+                    .setImage('https://cdn.discordapp.com/attachments/1388555378643566663/1402629065806184448/fortnite.png?ex=68949b9c&is=68934a1c&hm=7159c8a56a3e2cbb36cbc1d6b5e2ab640f23b5ce5b91b80d21b611595b7ef4ab&')
                     .setColor('#6f21ff');
 
                 row = new ActionRowBuilder().addComponents(
@@ -280,6 +281,7 @@ Auto buy *[website here](https://silentmafia.pl)*`)
 Select *products*.
 Click on ticket *after select*.
 Auto buy *[website here](https://silentmafia.pl)*`)
+                    .setImage('https://cdn.discordapp.com/attachments/1388555378643566663/1402628782136758372/valorant.png?ex=68949b59&is=689349d9&hm=472ab48cbca78794cb1eaa0b3851d50086f75f9afcc3dc7c900db5253b5ba864&')
                     .setColor('#6f21ff');
 
                 row = new ActionRowBuilder().addComponents(
