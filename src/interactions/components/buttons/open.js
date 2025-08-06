@@ -7,7 +7,7 @@ module.exports = {
         const ticketChannel = interaction.channel;
         const ticketData = await Ticket.findOne({ channelId: ticketChannel.id });
         if (!ticketData) {
-            return interaction.followUp({ content: '> Ticket wymaga usunięcia. Nie da się go otworzyć ponownie.', flags: 64 })
+            return interaction.followUp({ content: '> Ticket wymaga usunięcia. nie da się go otworzyć ponownie.', flags: 64 })
         }
         const member = interaction.member;
         const guild = interaction.guild;
