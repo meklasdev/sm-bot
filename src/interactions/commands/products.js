@@ -10,31 +10,9 @@ const panelChoices = [
     { name: 'fortnite', value: 'fortnite' },
     { name: 'valorant', value: 'valorant' }
 ];
-
-module.exports = {
-    name: 'products',
-    description: 'Wysyła wybrany panel produktów.',
-    options: [
-        {
-            name: 'panel',
-            description: 'Wybierz jaki panel chcesz wysłać.',
-            type: 3,
-            choices: panelChoices,
-            required: true
-        }
-    ],
-
-    execute: async (interaction) => {
-        
-
-        if (!config.ALLOWED_COMMAND_USERS.includes(interaction.user.id)) {
-            return interaction.reply({ content: '**Nie masz uprawnień do wykonania tej komendy.**', flags: 64 });
-        }
-
-        const panel = interaction.options.getString('panel');
-        let embed, row;
-
-        switch (panel) {
+function buildPanel(panel) {
+    let embed, row;
+    switch (panel) {
             case 'fivem':
                 embed = new EmbedBuilder()
                     .setDescription(`
@@ -298,7 +276,31 @@ Auto buy *[website here](https://silentmafia.pl)*`)
                         ])
                 );
                 break;
+    }
+    return { embed, row };
+}
+
+module.exports = {
+    name: 'products',
+    description: 'Wysyła wybrany panel produktów.',
+    options: [
+        {
+            name: 'panel',
+            description: 'Wybierz jaki panel chcesz wysłać.',
+            type: 3,
+            choices: panelChoices,
+            required: true
         }
+    ],
+    buildPanel,
+    execute: async (interaction) => {
+
+        if (!config.ALLOWED_COMMAND_USERS.includes(interaction.user.id)) {
+            return interaction.reply({ content: '**Nie masz uprawnień do wykonania tej komendy.**', flags: 64 });
+        }
+
+        const panel = interaction.options.getString('panel');
+        const { embed, row } = buildPanel(panel);
 
         interaction.channel.send({ embeds: [embed], components: [row] });
         interaction.reply({ content: `> **Wysłano panel produktów ${panel}!**`, flags: 64 });

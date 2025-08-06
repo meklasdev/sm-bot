@@ -1,4 +1,4 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder } = require('discord.js');
 
 module.exports = {
     name: 'ticket',
@@ -24,6 +24,7 @@ module.exports = {
                 { name: 'silent', value: 'silent' },
                 { name: 'steam', value: 'steam' },
                 { name: 'support', value: 'support' },
+                { name: 'freekeys', value: 'freekeys' },
                 { name: 'tiago', value: 'tiago' },
                 { name: 'tiagotemp', value: 'tiagotemp' },
                 { name: 'unicore', value: 'unicore' },
@@ -635,6 +636,27 @@ module.exports = {
                         .setCustomId(`ticket_support`)
                         .setEmoji(`<:support:1358051188758806579>`)
                         .setStyle(ButtonStyle.Secondary)
+                );
+                break;
+            case 'freekeys':
+                embed = new EmbedBuilder()
+                    .setDescription(`
+# 🎁 Free Keys
+
+Wybierz powód odbioru klucza z menu poniżej.
+                    `)
+                    .setColor('#6f21ff');
+                row = new ActionRowBuilder().addComponents(
+                    new StringSelectMenuBuilder()
+                        .setCustomId('free_keys')
+                        .setPlaceholder('Wybierz powód')
+                        .addOptions([
+                            { label: 'Content', value: 'content', emoji: '🎥' },
+                            { label: 'Wideo', value: 'video', emoji: '📹' },
+                            { label: 'Współpraca', value: 'collab', emoji: '🤝' },
+                            { label: 'Promocja', value: 'promo', emoji: '📢' },
+                            { label: 'Nagroda', value: 'reward', emoji: '🏆' },
+                        ])
                 );
                 break;
             case 'tiago':

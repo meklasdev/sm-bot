@@ -4,12 +4,12 @@ Discord bot handling ticket system and product commands.
 
 ## TODO
 
-- [ ] Polish and restructure FAQ content with category select menu and ticket button
-- [ ] Automate media channel posts for @content role
-- [ ] Refresh free-keys layout with reason select menu leading to tickets
-- [ ] Improve auto-role panel for ping roles
-- [ ] Create product guide flow with nested select menus and ticket shortcut
-- [ ] Expand features from Gordon's specification
+- [x] Polish and restructure FAQ content with category select menu and ticket button
+- [x] Automate media channel posts for @content role
+- [x] Refresh free-keys layout with reason select menu leading to tickets
+- [x] Improve auto-role panel for ping roles
+- [x] Create product guide flow with nested select menus and ticket shortcut
+- [x] Expand features from Gordon's specification
 
 
 

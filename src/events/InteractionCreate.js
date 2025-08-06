@@ -41,6 +41,7 @@ module.exports = {
 
                 switch (ticketCategory) {
                     case 'support':
+                    case 'free keys':
                         const supportReason = interaction.fields.getTextInputValue('reason');
 
                         embed = new EmbedBuilder()
@@ -263,6 +264,10 @@ module.exports = {
                         categoryID = '1382630835576111175';
                         roleID = '1382630829552963591';
                         break;
+                    case 'free keys':
+                        categoryID = '1382630835576111175';
+                        roleID = '1382630829552963591';
+                        break;
                     case 'tiago':
                         categoryID = '1382630830064668686';
                         roleID = '1382630829561217083';
@@ -308,7 +313,7 @@ module.exports = {
                     }
                 ];
 
-                if (ticketCategory === 'support') {
+                if (ticketCategory === 'support' || ticketCategory === 'free keys') {
                     permissionOverwrites.push({
                         id: '1382630829552963590',
                         allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.ManageMessages, PermissionsBitField.Flags.AttachFiles, PermissionsBitField.Flags.ReadMessageHistory, PermissionsBitField.Flags.SendMessages]
@@ -424,8 +429,9 @@ module.exports = {
                     .setCustomId(interaction.customId)
                     .setTitle('Creating Ticket');
 
-                switch (ticketCategory) {
+                    switch (ticketCategory) {
                     case 'support':
+                    case 'free keys':
                     case 'other':
                         const reasonField = new TextInputBuilder()
                             .setCustomId('reason')
