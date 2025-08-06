@@ -1,11 +1,41 @@
 const { EmbedBuilder, ChannelType, PermissionsBitField } = require('discord.js');
 const channelIds = ['1382630833000812598', '1382630834875535365'];
 const config = require('../config/reviewConfig');
+const verificationConfig = require('../config/verificationConfig');
 
 module.exports = {
     name: "messageCreate",
     async execute(message) {
         if (message.author.bot) return;
+
+        if (message.channel.id === verificationConfig.VERIFY_CHANNEL_ID) {
+            const images = [...message.attachments.values()].filter(att => att.contentType && att.contentType.startsWith('image/'));
+            const success = images.length === 2 && message.attachments.size === 2;
+
+            if (success) {
+                await message.member.roles.add(verificationConfig.VERIFY_ROLE_ID).catch(() => {});
+                await message.react('✅').catch(() => {});
+
+                const pinned = await message.channel.messages.fetchPinned();
+                for (const pin of pinned.values()) {
+                    await pin.unpin().catch(() => {});
+                }
+
+                setTimeout(async () => {
+                    try {
+                        const sent = await message.channel.send(verificationConfig.STICKY_MESSAGE);
+                        await sent.pin();
+                    } catch (err) {
+                        console.error('[messageCreate] Błąd przy wysyłaniu poradnika:', err);
+                    }
+                }, 3000);
+            } else {
+                await message.delete().catch(() => {});
+                await message.member.timeout(verificationConfig.TIMEOUT_MS, 'Failed verification').catch(() => {});
+                await message.author.send({ content: verificationConfig.DM_MESSAGE }).catch(() => {});
+            }
+            return;
+        }
 
         if (message.content.toLowerCase() === 'ticket fortnite') {
             await message.delete().catch(error => console.error('[messageCreate] Nie udało się usunąć wiadomości:', error.message));
