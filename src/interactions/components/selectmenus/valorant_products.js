@@ -28,7 +28,7 @@ module.exports = {
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('valorant_ventiq_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Ventiq - €4.99 / 20 PLN',
@@ -50,6 +50,6 @@ module.exports = {
                 break;
         }
 
-        await interaction.reply({ embeds: [embed], components: [selectRow], flags: 64 });
+        await interaction.reply({ embeds: [embed], flags: 64 });
     }
 };

@@ -1,10 +1,10 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder} = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder} = require('discord.js');
 
 module.exports = {
     async execute(interaction) {
         const selectedValue = interaction.values[0];
 
-        let embed, row, selectRow;
+        let embed, selectRow;
         switch (selectedValue) {
             case 'fivem_bundle':
                 embed = new EmbedBuilder()
@@ -27,17 +27,10 @@ module.exports = {
 ** <a:arrowpurple:1384626293139570781>  <:applebank:1382655955787059301> - Payments: **[Click Click](https://discord.com/channels/1331664914984599614/1331774472444969003)
 ** <a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1331664914984599614/1331774268815441990)  |  [Proofs](https://discord.com/channels/1331664914984599614/1349145049509789800)  | [Reviews](https://discord.com/channels/1331664914984599614/1331774311434031197)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_fivem`)
-                        .setEmoji(`<:bundle:1382655741986471946>`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('bundle_fivem_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'FiveM Bundle - €0.47 / 1.99 PLN',
@@ -74,17 +67,10 @@ module.exports = {
 ** <a:arrowpurple:1384626293139570781>  <:applebank:1382655955787059301> - Payments: **[Click Click](https://discord.com/channels/1331664914984599614/1331774472444969003)
 ** <a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1331664914984599614/1331774268815441990)  |  [Proofs](https://discord.com/channels/1331664914984599614/1349145049509789800)  | [Reviews](https://discord.com/channels/1331664914984599614/1331774311434031197)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_discord`)
-                        .setEmoji(`<:DISCORD:1382653651214012477>`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('bundle_discord_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Discord Bundle - €0.70 / 2.99 PLN',
@@ -101,6 +87,6 @@ module.exports = {
                 break;
         }
 
-        await interaction.reply({ embeds: [embed], components: [selectRow], flags: 64 });
+        await interaction.reply({ embeds: [embed], flags: 64 });
     }
 };
