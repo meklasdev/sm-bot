@@ -1,4 +1,3 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { buildPanel } = require('../../commands/products');
 
 module.exports = {
@@ -10,14 +9,6 @@ module.exports = {
             return interaction.reply({ content: 'Nieprawidłowa kategoria.', ephemeral: true });
         }
 
-        const buttonRow = new ActionRowBuilder().addComponents(
-            new ButtonBuilder()
-                .setCustomId('ticket_support')
-                .setLabel('Otwórz ticket')
-                .setEmoji('🎫')
-                .setStyle(ButtonStyle.Secondary)
-        );
-
-        await interaction.reply({ embeds: [embed], components: [row, buttonRow], ephemeral: true });
+        await interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
     }
 };

@@ -1,10 +1,10 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder} = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder} = require('discord.js');
 
 module.exports = {
     async execute(interaction) {
         const selectedValue = interaction.values[0];
 
-        let embed, row, selectRow;
+        let embed, selectRow;
         switch (selectedValue) {
             case 'red_engine':
                 embed = new EmbedBuilder()
@@ -45,7 +45,7 @@ module.exports = {
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('fivem_red_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Red Engine - €13,99 / 57 PLN',
@@ -99,17 +99,10 @@ module.exports = {
 **<a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1357977845695119360/1357979010184773642)  |  [Proofs](https://discord.com/channels/1357977845695119360/1357979009006436352)  | [Reviews](https://discord.com/channels/1357977845695119360/1359167618778534060)
 **<a:arrowpurple:1384626293139570781>  <:ogl:1382655256256843818> - Old Showcase: **[Click Click](https://www.youtube.com/watch?v=uNM3CKP3zmM&t=87s)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_keyser`)
-                        .setEmoji(`1358050517988806766`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('fivem_keyser_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Keyser - €4.99 / 20 PLN',
@@ -161,17 +154,10 @@ module.exports = {
 **<a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1357977845695119360/1357979010184773642)  |  [Proofs](https://discord.com/channels/1357977845695119360/1357979009006436352)  | [Reviews](https://discord.com/channels/1357977845695119360/1359167618778534060)
 **<a:arrowpurple:1384626293139570781> <:ogl:1382655256256843818> - Showcase: **[Click Click](https://www.youtube.com/watch?v=-CYejk5QWuk&t=6s)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_unicore`)
-                        .setEmoji(`1359425889208631459`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('fivem_unicore_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Unicore - €3 / 11 PLN',
@@ -224,17 +210,10 @@ module.exports = {
 **<a:arrowpurple:1384626293139570781>  <:ogl:1382655256256843818>  - Showcase: **[Click Click](https://youtu.be/KmKAjm1o_cs?si=7hrnk1el1naCjVTy)
 
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_hx`)
-                        .setEmoji(`1359520884511211650`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('fivem_hx_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Hx - €5 / 20 PLN',
@@ -292,17 +271,10 @@ module.exports = {
 **<a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1382630829536182302/1382630833000812597)  |  [Proofs](https://discord.com/channels/1357977845695119360/1357979009006436352)  | [Reviews](https://discord.com/channels/1357977845695119360/1359167618778534060)
 **<a:arrowpurple:1384626293139570781> <:ogl:1382655256256843818> - Showcase: **[Click Click](https://youtu.be/H0-7SO_pUs4?feature=shared)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_tiago`)
-                        .setEmoji(`1358051116868178104`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('fivem_tiago_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Tiago - €3 / 12.99 PLN',
@@ -356,17 +328,10 @@ module.exports = {
 ** <a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1382630829536182302/1382630833000812597)  |  [Proofs](https://discord.com/channels/1357977845695119360/1357979009006436352)  | [Reviews](https://discord.com/channels/1357977845695119360/1359167618778534060)
 **<a:arrowpurple:1384626293139570781>  <:ogl:1382655256256843818> - Showcase: **[Click Click](https://www.youtube.com/watch?v=oaiiRPWGTgA)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_macho`)
-                        .setEmoji(`1358051351246012599`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('fivem_macho_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Macho - €4.70 / 20 PLN',
@@ -442,7 +407,7 @@ module.exports = {
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('ventiq_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Ventiq - €9.99 / 42 PLN',
@@ -459,6 +424,6 @@ module.exports = {
                 break;
         }
 
-        await interaction.reply({ embeds: [embed], components: [selectRow], flags: 64 });
+        await interaction.reply({ embeds: [embed], flags: 64 });
     }
 };

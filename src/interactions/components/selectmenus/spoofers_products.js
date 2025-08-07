@@ -1,10 +1,10 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder} = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder} = require('discord.js');
 
 module.exports = {
     async execute(interaction) {
         const selectedValue = interaction.values[0];
 
-        let embed, row, selectRow;
+        let embed, selectRow;
         switch (selectedValue) {
             case 'red_engine':
                 embed = new EmbedBuilder()
@@ -37,7 +37,7 @@ module.exports = {
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('red_engine_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Red Engine - €8 / 34.99 PLN',
@@ -85,7 +85,7 @@ module.exports = {
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('tiago_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Tiago- €1 / 4.5 PLN',
@@ -139,7 +139,7 @@ module.exports = {
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('macho_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Macho - €3.3 / 14 PLN',
@@ -190,7 +190,7 @@ module.exports = {
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('silent_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Silent - €3.5 / 15 PLN',
@@ -202,6 +202,6 @@ module.exports = {
                 break;
         }
 
-        await interaction.reply({ embeds: [embed], components: [selectRow], flags: 64 });
+        await interaction.reply({ embeds: [embed], flags: 64 });
     }
 };

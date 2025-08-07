@@ -11,17 +11,18 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription('## <:silent:1395058293432516658> FAQ\nWybierz kategorię, aby zobaczyć odpowiedzi.')
-            .setColor('#6f21ff');
+            .setColor('#6f21ff')
+            .setImage('https://media.discordapp.net/attachments/1382630836171706431/1384617324581228687/image.png?ex=6895a89f&is=6894571f&hm=ae510f591f5c2c029f57bfb7c7c146709094693e3927ac851967475596c33cf5&=&format=webp&quality=lossless');
 
         const selectRow = new ActionRowBuilder().addComponents(
             new StringSelectMenuBuilder()
                 .setCustomId('faq')
-                .setPlaceholder('❌ | Wybierz kategorię')
+                .setPlaceholder('Wybierz kategorię')
                 .addOptions([
-                    { label: 'Zakupy', value: 'zakupy', emoji: '🛒', description: 'Informacje o zakupach' },
-                    { label: 'Płatności', value: 'platnosci', emoji: '💳', description: 'Metody płatności' },
-                    { label: 'Scam?', value: 'scam', emoji: '❓', description: 'Czy to scam?' },
-                    { label: 'Pomoc', value: 'pomoc', emoji: '🆘', description: 'Gdzie uzyskać pomoc' }
+                    { label: 'Czy to scam?', value: 'scam', emoji: { id: '1384625637775507498', name: 'legit' }, description: 'Czy to nie scam?' },
+                    { label: 'Kiedy produkt?', value: 'delivery', emoji: { id: '1384618944916357260', name: 'gift_icon' }, description: 'Kiedy dostanę zakupiony produkt?' },
+                    { label: 'Gdzie PSC?', value: 'psc', emoji: { id: '1382655079420792922', name: 'psc' }, description: 'Gdzie zapłacić PSC?' },
+                    { label: 'Tutoriale', value: 'tutorial', emoji: { id: '1384624277122449510', name: '2141file' }, description: 'Gdzie znaleźć tutoriale?' }
                 ])
         );
 
@@ -29,7 +30,7 @@ module.exports = {
             new ButtonBuilder()
                 .setCustomId('ticket_support')
                 .setLabel('Otwórz ticket')
-                .setEmoji('🎫')
+                .setEmoji({ id: '1401226055867433041', name: 'ticket' })
                 .setStyle(ButtonStyle.Secondary)
         );
 

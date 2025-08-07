@@ -1,10 +1,10 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder} = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder} = require('discord.js');
 
 module.exports = {
     async execute(interaction) {
         const selectedValue = interaction.values[0];
 
-        let embed, row, selectRow;
+        let embed, selectRow;
         switch (selectedValue) {
             case 'fivem_ready':
                 embed = new EmbedBuilder()
@@ -27,17 +27,10 @@ module.exports = {
 ** <a:arrowpurple:1384626293139570781> <:applebank:1384626789627727904> - Payments: **[Click Click](https://discord.com/channels/1382630829536182302/1382630832510074940)
 ** <a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1382630829536182302/1382630833000812597)  |  [Proofs](https://discord.com/channels/1331664914984599614/1349145049509789800)  | [Reviews](https://discord.com/channels/1357977845695119360/1359167618778534060)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()                    
-                        .setCustomId(`ticket_fivem`)
-                        .setEmoji(`1358050363332231268`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('premium_fivem_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Single Premium - €0.23 / 1 PLN',
@@ -73,17 +66,10 @@ module.exports = {
 ** <a:arrowpurple:1384626293139570781>  <:applebank:1382655955787059301> - Payments: **[Click Click](https://discord.com/channels/1382630829536182302/1382630832510074940)
 ** <a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1382630829536182302/1382630833000812597)  |  [Proofs](https://discord.com/channels/1357977845695119360/1357979009006436352)  | [Reviews](https://discord.com/channels/1357977845695119360/1359167618778534060)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_steam`)
-                        .setEmoji(`1358048490571173989`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('premium_steam_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'Steam Account x1 - €0.03 / 0.10 PLN',
@@ -115,17 +101,10 @@ module.exports = {
 ** <a:arrowpurple:1384626293139570781>  <:applebank:1382655955787059301> - Payments: **[Click Click](https://discord.com/channels/1331664914984599614/1331774472444969003)
 ** <a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1331664914984599614/1331774268815441990)  |  [Proofs](https://discord.com/channels/1331664914984599614/1349145049509789800)  | [Reviews](https://discord.com/channels/1331664914984599614/1331774311434031197)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_discord`)
-                        .setEmoji(`1358048371083837501`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('premium_discord_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'E-Mail Verifi - €0.15 / 0.65 PLN',
@@ -164,17 +143,10 @@ module.exports = {
 ** <a:arrowpurple:1384626293139570781>  <:applebank:1382655955787059301> - Payments: **[Click Click](https://discord.com/channels/1331664914984599614/1331774472444969003)
 ** <a:arrowpurple:1384626293139570781> <:legit:1384625637775507498> - Legit Checks:** [Vouches](https://discord.com/channels/1331664914984599614/1331774268815441990)  |  [Proofs](https://discord.com/channels/1331664914984599614/1349145049509789800)  | [Reviews](https://discord.com/channels/1331664914984599614/1331774311434031197)
                     `);
-                row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`ticket_ipvanish`)
-                        .setEmoji(`1359436765315727432`)
-                        .setStyle(ButtonStyle.Secondary)
-                );
-                
                 selectRow = new ActionRowBuilder().addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('premium_ipvanish_tickets')
-                        .setPlaceholder('Select Product | Wybierz Produkt')
+                        .setPlaceholder('Select Product to Open Ticket | Wybierz Produkt aby otworzyć ticket')
                         .addOptions([
                             {
                                 label: 'IP Vanish - €1.4 / 5.99 PLN',
@@ -186,6 +158,6 @@ module.exports = {
                 break;
         }
 
-        await interaction.reply({ embeds: [embed], components: [selectRow], flags: 64 });
+        await interaction.reply({ embeds: [embed], flags: 64 });
     }
 };
